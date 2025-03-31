@@ -58,3 +58,14 @@ aside img{
     color: var(--letras-select);
 
 }
+
+.search-container {
+    display: flex;
+    justify-content:left;
+}
+input[type="text"] {
+    padding: 8px;
+    width: 250px;
+    border: 2px solid rgb(211, 211, 211);
+    border-radius: 4px;
+}
