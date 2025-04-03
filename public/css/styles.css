@@ -1,71 +1,379 @@
+/* Definición de variables CSS personalizadas para colores */
 :root {
-    --light : #e5e9f4;
-    --medium : #85a1df;
-    --dark : #5e6db2;
-    --letras : #becbe4;
-    --letras-select :#3d436b;
+    --light: #e5e9f4;
+    /* Color claro de fondo */
+    --medium: #85a1df;
+    /* Color azul medio */
+    --dark: #5e6db2;
+    /* Color azul oscuro */
+    --letras: #becbe4;
+    /* Color para texto secundario */
+    --letras-select: #3d436b;
+    /* Color para texto principal */
+    --white: #ffffff;
+    /* Blanco puro */
+    --yellow: #ffcc00;
+    /* Amarillo para botones */
+    --yellow-dark: #e6b800;
+    /* Amarillo oscuro (hover) */
 }
 
+/* Reset básico para todos los elementos */
 * {
     margin: 0;
+    /* Elimina márgenes por defecto */
     padding: 0;
+    /* Elimina padding por defecto */
     box-sizing: border-box;
+    /* El padding y border se incluyen en el ancho/alto */
+    font-family: 'Winky Sans', sans-serif;
+    /* Fuente principal */
 }
 
-body{
+/* Estilos del cuerpo del documento */
+body {
     display: flex;
+    /* Usa flexbox para layout */
     flex-direction: row;
-}
-
-main {
-    width: 100%;
+    /* Disposición en fila (horizontal) */
     background-color: var(--light);
-}
-.lista-aside {
-    list-style: none;
+    /* Fondo con color claro */
 }
 
-header{
-    border-radius: 7px;
-    margin-left: 5px;
-    height: 75px;
-    background-color: white;
-}
-
+/* Barra lateral */
 aside {
     width: 200px;
+    /* Ancho fijo */
     height: 100vh;
-    display: flex;
+    /* Altura completa del viewport */
+    background-color: var(--white);
+    /* Fondo blanco */
+    padding: 20px;
+    /* Espaciado interno */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    /* Sombra lateral */
 }
 
-.btn-aside{
-    margin-top: 10px;
-    border-radius: 5px;
-    padding: 10px;
-    color: var(--medium);
-    background-color: white;
-    border: none;
-    width: 100px;
-    cursor: pointer;
-
+/* Lista del menú lateral */
+.lista-aside {
+    list-style: none;
+    /* Elimina viñetas de lista */
 }
 
-aside img{
+/* Imagen del logo en el menú */
+.lista-aside img {
     width: 150px;
+    /* Ancho fijo */
+    margin-bottom: 20px;
+    /* Espacio inferior */
 }
 
-.btn-aside:hover{
+/* Botones del menú lateral */
+.btn-aside {
+    margin-top: 10px;
+    /* Espacio superior */
+    border-radius: 5px;
+    /* Esquinas redondeadas */
+    padding: 10px;
+    /* Espaciado interno */
+    color: var(--medium);
+    /* Color del texto */
+    background-color: var(--white);
+    /* Fondo blanco */
+    border: none;
+    /* Sin borde */
+    width: 100%;
+    /* Ancho completo */
+    cursor: pointer;
+    /* Cursor tipo pointer */
+    text-align: left;
+    /* Alineación texto a la izquierda */
+    font-size: 16px;
+    /* Tamaño de fuente */
+}
+
+/* Estados hover y active de botones */
+.btn-aside:hover,
+.btn-aside.active {
     color: var(--letras-select);
-
+    /* Cambia color texto */
+    background-color: var(--light);
+    /* Cambia fondo */
 }
 
+/* Iconos dentro de botones */
+.btn-aside i {
+    margin-right: 10px;
+    /* Espacio a la derecha del icono */
+}
+
+/* Contenido principal */
+main {
+    width: calc(100% - 200px);
+    /* Ancho restante (100% - sidebar) */
+    padding: 20px;
+    /* Espaciado interno */
+}
+
+/* Barra de navegación superior */
+.navBar {
+    background-color: var(--white);
+    /* Fondo blanco */
+    padding: 15px;
+    /* Espaciado interno */
+    border-radius: 8px;
+    /* Esquinas redondeadas */
+    margin-bottom: 20px;
+    /* Espacio inferior */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Sombra sutil */
+}
+
+/* Contenedor de búsqueda */
 .search-container {
     display: flex;
-    justify-content:left;
+    /* Usa flexbox */
+    align-items: center;
+    /* Centra verticalmente */
 }
-input[type="text"] {
+
+/* Campo de búsqueda */
+.search-container input {
     padding: 8px;
+    /* Espaciado interno */
     width: 250px;
-    border: 2px solid rgb(211, 211, 211);
+    /* Ancho fijo */
+    border: 2px solid #ddd;
+    /* Borde gris */
     border-radius: 4px;
+    /* Esquinas redondeadas */
+    font-size: 14px;
+    /* Tamaño de fuente */
+}
+
+/* Botones primarios */
+.btn-primary {
+    background-color: var(--dark);
+    /* Fondo azul oscuro */
+    color: var(--white);
+    /* Texto blanco */
+    border: none;
+    /* Sin borde */
+    padding: 8px 15px;
+    /* Espaciado interno */
+    border-radius: 4px;
+    /* Esquinas redondeadas */
+    cursor: pointer;
+    /* Cursor tipo pointer */
+    margin-left: 10px;
+    /* Espacio a la izquierda */
+    font-size: 14px;
+    /* Tamaño de fuente */
+}
+
+/* Efecto hover para botones primarios */
+.btn-primary:hover {
+    opacity: 0.9;
+    /* Ligera transparencia */
+}
+
+/* Título del inventario */
+.inventory h1 {
+    margin-bottom: 20px;
+    /* Espacio inferior */
+    color: var(--letras-select);
+    /* Color de texto */
+}
+
+/* Contenedor de métricas */
+.metrics {
+    display: flex;
+    /* Usa flexbox */
+    gap: 20px;
+    /* Espacio entre elementos */
+    margin-bottom: 20px;
+    /* Espacio inferior */
+}
+
+/* Tarjetas de métricas */
+.metric-card {
+    background: var(--white);
+    /* Fondo blanco */
+    padding: 15px;
+    /* Espaciado interno */
+    border-radius: 8px;
+    /* Esquinas redondeadas */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Sombra sutil */
+    width: 200px;
+    /* Ancho fijo */
+}
+
+/* Texto pequeño en tarjetas */
+.metric-card span {
+    color: var(--medium);
+    /* Color azul medio */
+    font-size: 14px;
+    /* Tamaño de fuente */
+}
+
+/* Números grandes en tarjetas */
+.metric-card h3 {
+    color: var(--letras-select);
+    /* Color de texto */
+    margin-top: 5px;
+    /* Espacio superior */
+}
+
+/* Tabla de productos */
+#products-table {
+    width: 100%;
+    /* Ancho completo */
+    border-collapse: collapse;
+    /* Bordes unificados */
+    background: var(--white);
+    /* Fondo blanco */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Sombra sutil */
+}
+
+/* Celdas de tabla */
+#products-table th,
+#products-table td {
+    padding: 12px;
+    /* Espaciado interno */
+    text-align: left;
+    /* Alineación texto izquierda */
+    border-bottom: 1px solid #ddd;
+    /* Borde inferior */
+}
+
+/* Encabezados de tabla */
+#products-table th {
+    background: var(--medium);
+    /* Fondo azul medio */
+    color: var(--white);
+    /* Texto blanco */
+}
+
+/* Efecto hover en filas */
+#products-table tr:hover {
+    background-color: #f5f5f5;
+    /* Fondo gris claro */
+}
+
+/* Botón de edición */
+.btn-edit {
+    background-color: var(--yellow);
+    /* Fondo amarillo */
+    color: #000;
+    /* Texto negro */
+    border: none;
+    /* Sin borde */
+    padding: 6px 12px;
+    /* Espaciado interno */
+    border-radius: 4px;
+    /* Esquinas redondeadas */
+    cursor: pointer;
+    /* Cursor tipo pointer */
+    font-weight: bold;
+    /* Texto en negrita */
+    transition: background-color 0.3s;
+    /* Transición suave */
+}
+
+/* Efecto hover para botón editar */
+.btn-edit:hover {
+    background-color: var(--yellow-dark);
+    /* Amarillo oscuro */
+}
+
+/* Modal (ventana emergente) */
+.modal {
+    display: none;
+    /* Oculto por defecto */
+    position: fixed;
+    /* Posición fija */
+    top: 0;
+    /* Desde arriba */
+    left: 0;
+    /* Desde izquierda */
+    width: 100%;
+    /* Ancho completo */
+    height: 100%;
+    /* Alto completo */
+    background: rgba(0, 0, 0, 0.5);
+    /* Fondo semitransparente */
+    z-index: 1000;
+    /* Capa superior */
+    justify-content: center;
+    /* Centrado horizontal */
+    align-items: center;
+    /* Centrado vertical */
+}
+
+/* Contenido del modal */
+.modal-content {
+    background: var(--white);
+    /* Fondo blanco */
+    padding: 20px;
+    /* Espaciado interno */
+    border-radius: 8px;
+    /* Esquinas redondeadas */
+    width: 400px;
+    /* Ancho fijo */
+    position: relative;
+    /* Para posicionar elementos hijos */
+}
+
+/* Botón para cerrar modal */
+.close-modal {
+    position: absolute;
+    /* Posición absoluta */
+    top: 10px;
+    /* Desde arriba */
+    right: 15px;
+    /* Desde derecha */
+    font-size: 24px;
+    /* Tamaño grande */
+    cursor: pointer;
+    /* Cursor tipo pointer */
+    color: var(--medium);
+    /* Color azul medio */
+}
+
+/* Grupos de formulario */
+.form-group {
+    margin-bottom: 15px;
+    /* Espacio inferior */
+}
+
+/* Etiquetas de formulario */
+.form-group label {
+    display: block;
+    /* Mostrar como bloque */
+    margin-bottom: 5px;
+    /* Espacio inferior */
+    color: var(--letras-select);
+    /* Color de texto */
+}
+
+/* Campos de entrada */
+.form-group input {
+    width: 100%;
+    /* Ancho completo */
+    padding: 8px;
+    /* Espaciado interno */
+    border: 1px solid #ddd;
+    /* Borde gris */
+    border-radius: 4px;
+    /* Esquinas redondeadas */
+    font-size: 14px;
+    /* Tamaño de fuente */
+}
+
+/* Clase para ocultar elementos */
+.hidden {
+    display: none;
+    /* No mostrar */
 }
