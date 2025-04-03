@@ -54,14 +54,23 @@ aside {
     /* Sombra lateral */
 }
 
-/* Lista del menú lateral */
-.lista-aside {
-    list-style: none;
-    /* Elimina viñetas de lista */
+.btn-aside {
+    margin-top: 10px;
+    padding: 10px;
+    color: var(--medium);
+    background-color: white;
+    border: none;
+    width: 100px;
+    cursor: pointer;
+
 }
 
-/* Imagen del logo en el menú */
-.lista-aside img {
+.footer {
+    margin-top: 200px;
+
+}
+
+aside img {
     width: 150px;
     /* Ancho fijo */
     margin-bottom: 20px;
@@ -132,9 +141,8 @@ main {
 /* Contenedor de búsqueda */
 .search-container {
     display: flex;
-    /* Usa flexbox */
-    align-items: center;
-    /* Centra verticalmente */
+    justify-content: left;
+    padding: 20px 20px;
 }
 
 /* Campo de búsqueda */
@@ -142,238 +150,29 @@ main {
     padding: 8px;
     /* Espaciado interno */
     width: 250px;
-    /* Ancho fijo */
-    border: 2px solid #ddd;
-    /* Borde gris */
+    border: 0.5px solid rgb(211, 211, 211);
     border-radius: 4px;
-    /* Esquinas redondeadas */
-    font-size: 14px;
-    /* Tamaño de fuente */
 }
 
-/* Botones primarios */
-.btn-primary {
-    background-color: var(--dark);
-    /* Fondo azul oscuro */
-    color: var(--white);
-    /* Texto blanco */
-    border: none;
-    /* Sin borde */
-    padding: 8px 15px;
-    /* Espaciado interno */
-    border-radius: 4px;
-    /* Esquinas redondeadas */
-    cursor: pointer;
-    /* Cursor tipo pointer */
-    margin-left: 10px;
-    /* Espacio a la izquierda */
-    font-size: 14px;
-    /* Tamaño de fuente */
+.img-usuario {
+    width: 30px;
 }
 
-/* Efecto hover para botones primarios */
-.btn-primary:hover {
-    opacity: 0.9;
-    /* Ligera transparencia */
-}
-
-/* Título del inventario */
-.inventory h1 {
-    margin-bottom: 20px;
-    /* Espacio inferior */
-    color: var(--letras-select);
-    /* Color de texto */
-}
-
-/* Contenedor de métricas */
-.metrics {
-    display: flex;
-    /* Usa flexbox */
-    gap: 20px;
-    /* Espacio entre elementos */
-    margin-bottom: 20px;
-    /* Espacio inferior */
-}
-
-/* Tarjetas de métricas */
-.metric-card {
-    background: var(--white);
-    /* Fondo blanco */
-    padding: 15px;
-    /* Espaciado interno */
+.card {
+    background: white;
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-top: 30px;
     border-radius: 8px;
-    /* Esquinas redondeadas */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    /* Sombra sutil */
-    width: 200px;
-    /* Ancho fijo */
+    padding: 40px;
 }
 
-/* Texto pequeño en tarjetas */
-.metric-card span {
-    color: var(--medium);
-    /* Color azul medio */
-    font-size: 14px;
-    /* Tamaño de fuente */
+.main-container {
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-/* Números grandes en tarjetas */
-.metric-card h3 {
-    color: var(--letras-select);
-    /* Color de texto */
-    margin-top: 5px;
-    /* Espacio superior */
-}
-
-/* Tabla de productos */
-#products-table {
-    width: 100%;
-    /* Ancho completo */
-    border-collapse: collapse;
-    /* Bordes unificados */
-    background: var(--white);
-    /* Fondo blanco */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    /* Sombra sutil */
-}
-
-/* Celdas de tabla */
-#products-table th,
-#products-table td {
-    padding: 12px;
-    /* Espaciado interno */
-    text-align: left;
-    /* Alineación texto izquierda */
-    border-bottom: 1px solid #ddd;
-    /* Borde inferior */
-}
-
-/* Encabezados de tabla */
-#products-table th {
-    background: var(--medium);
-    /* Fondo azul medio */
-    color: var(--white);
-    /* Texto blanco */
-}
-
-/* Efecto hover en filas */
-#products-table tr:hover {
-    background-color: #f5f5f5;
-    /* Fondo gris claro */
-}
-
-/* Botón de edición */
-.btn-edit {
-    background-color: var(--yellow);
-    /* Fondo amarillo */
-    color: #000;
-    /* Texto negro */
-    border: none;
-    /* Sin borde */
-    padding: 6px 12px;
-    /* Espaciado interno */
-    border-radius: 4px;
-    /* Esquinas redondeadas */
-    cursor: pointer;
-    /* Cursor tipo pointer */
-    font-weight: bold;
-    /* Texto en negrita */
-    transition: background-color 0.3s;
-    /* Transición suave */
-}
-
-/* Efecto hover para botón editar */
-.btn-edit:hover {
-    background-color: var(--yellow-dark);
-    /* Amarillo oscuro */
-}
-
-/* Modal (ventana emergente) */
-.modal {
-    display: none;
-    /* Oculto por defecto */
-    position: fixed;
-    /* Posición fija */
-    top: 0;
-    /* Desde arriba */
-    left: 0;
-    /* Desde izquierda */
-    width: 100%;
-    /* Ancho completo */
-    height: 100%;
-    /* Alto completo */
-    background: rgba(0, 0, 0, 0.5);
-    /* Fondo semitransparente */
-    z-index: 1000;
-    /* Capa superior */
-    justify-content: center;
-    /* Centrado horizontal */
-    align-items: center;
-    /* Centrado vertical */
-}
-
-/* Contenido del modal */
-.modal-content {
-    background: var(--white);
-    /* Fondo blanco */
-    padding: 20px;
-    /* Espaciado interno */
-    border-radius: 8px;
-    /* Esquinas redondeadas */
-    width: 400px;
-    /* Ancho fijo */
-    position: relative;
-    /* Para posicionar elementos hijos */
-}
-
-/* Botón para cerrar modal */
-.close-modal {
-    position: absolute;
-    /* Posición absoluta */
-    top: 10px;
-    /* Desde arriba */
-    right: 15px;
-    /* Desde derecha */
-    font-size: 24px;
-    /* Tamaño grande */
-    cursor: pointer;
-    /* Cursor tipo pointer */
-    color: var(--medium);
-    /* Color azul medio */
-}
-
-/* Grupos de formulario */
-.form-group {
-    margin-bottom: 15px;
-    /* Espacio inferior */
-}
-
-/* Etiquetas de formulario */
-.form-group label {
-    display: block;
-    /* Mostrar como bloque */
-    margin-bottom: 5px;
-    /* Espacio inferior */
-    color: var(--letras-select);
-    /* Color de texto */
-}
-
-/* Campos de entrada */
-.form-group input {
-    width: 100%;
-    /* Ancho completo */
-    padding: 8px;
-    /* Espaciado interno */
-    border: 1px solid #ddd;
-    /* Borde gris */
-    border-radius: 4px;
-    /* Esquinas redondeadas */
-    font-size: 14px;
-    /* Tamaño de fuente */
-}
-
-/* Clase para ocultar elementos */
-.hidden {
-    display: none;
-    /* No mostrar */
+.secondary-container {
+    max-width: 1200px;
+    margin: 0 auto;
 }
