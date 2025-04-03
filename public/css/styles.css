@@ -1,44 +1,60 @@
+/* Definición de variables CSS personalizadas para colores */
 :root {
-    --light : #e5e9f4;
-    --medium : #85a1df;
-    --dark : #5e6db2;
-    --letras : #becbe4;
-    --letras-select :#3d436b;
+    --light: #e5e9f4;
+    /* Color claro de fondo */
+    --medium: #85a1df;
+    /* Color azul medio */
+    --dark: #5e6db2;
+    /* Color azul oscuro */
+    --letras: #becbe4;
+    /* Color para texto secundario */
+    --letras-select: #3d436b;
+    /* Color para texto principal */
+    --white: #ffffff;
+    /* Blanco puro */
+    --yellow: #ffcc00;
+    /* Amarillo para botones */
+    --yellow-dark: #e6b800;
+    /* Amarillo oscuro (hover) */
 }
 
+/* Reset básico para todos los elementos */
 * {
     margin: 0;
+    /* Elimina márgenes por defecto */
     padding: 0;
+    /* Elimina padding por defecto */
     box-sizing: border-box;
+    /* El padding y border se incluyen en el ancho/alto */
+    font-family: 'Winky Sans', sans-serif;
+    /* Fuente principal */
 }
 
-body{
+/* Estilos del cuerpo del documento */
+body {
     display: flex;
+    /* Usa flexbox para layout */
     flex-direction: row;
-}
-
-main {
-    width: 100%;
+    /* Disposición en fila (horizontal) */
     background-color: var(--light);
-}
-.lista-aside {
-    list-style: none;
+    /* Fondo con color claro */
 }
 
-header{
-    border-radius: 7px;
-    margin-left: 5px;
-    height: 75px;
-    background-color: white;
-}
-
+/* Barra lateral */
 aside {
     width: 200px;
+    /* Ancho fijo */
     height: 100vh;
-    display: flex;
+    /* Altura completa del viewport */
+    background-color: var(--white);
+    /* Fondo blanco */
+    padding: 20px;
+    /* Espaciado interno */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    /* Sombra lateral */
 }
 
-.btn-aside{
+.btn-aside {
     margin-top: 10px;
     padding: 10px;
     color: var(--medium);
@@ -54,22 +70,85 @@ aside {
 
 }
 
-aside img{
+aside img {
     width: 150px;
+    /* Ancho fijo */
+    margin-bottom: 20px;
+    /* Espacio inferior */
 }
 
-.btn-aside:hover{
+/* Botones del menú lateral */
+.btn-aside {
+    margin-top: 10px;
+    /* Espacio superior */
+    border-radius: 5px;
+    /* Esquinas redondeadas */
+    padding: 10px;
+    /* Espaciado interno */
+    color: var(--medium);
+    /* Color del texto */
+    background-color: var(--white);
+    /* Fondo blanco */
+    border: none;
+    /* Sin borde */
+    width: 100%;
+    /* Ancho completo */
+    cursor: pointer;
+    /* Cursor tipo pointer */
+    text-align: left;
+    /* Alineación texto a la izquierda */
+    font-size: 16px;
+    /* Tamaño de fuente */
+}
+
+/* Estados hover y active de botones */
+.btn-aside:hover,
+.btn-aside.active {
     color: var(--letras-select);
-
+    /* Cambia color texto */
+    background-color: var(--light);
+    /* Cambia fondo */
 }
 
+/* Iconos dentro de botones */
+.btn-aside i {
+    margin-right: 10px;
+    /* Espacio a la derecha del icono */
+}
+
+/* Contenido principal */
+main {
+    width: calc(100% - 200px);
+    /* Ancho restante (100% - sidebar) */
+    padding: 20px;
+    /* Espaciado interno */
+}
+
+/* Barra de navegación superior */
+.navBar {
+    background-color: var(--white);
+    /* Fondo blanco */
+    padding: 15px;
+    /* Espaciado interno */
+    border-radius: 8px;
+    /* Esquinas redondeadas */
+    margin-bottom: 20px;
+    /* Espacio inferior */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Sombra sutil */
+}
+
+/* Contenedor de búsqueda */
 .search-container {
     display: flex;
-    justify-content:left;
+    justify-content: left;
     padding: 20px 20px;
 }
-input[type="text"] {
+
+/* Campo de búsqueda */
+.search-container input {
     padding: 8px;
+    /* Espaciado interno */
     width: 250px;
     border: 0.5px solid rgb(211, 211, 211);
     border-radius: 4px;

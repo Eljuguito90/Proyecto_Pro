@@ -1,71 +1,163 @@
 <!DOCTYPE html>
+<!-- Define que es un documento HTML5 -->
 <html lang="en">
+<!-- Idioma principal inglés -->
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proyecto Pro</title>
+    <!-- Metadatos básicos -->
+    <meta charset="UTF-8"> <!-- Codificación de caracteres -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Responsive design -->
+    <title>Proyecto Pro</title> <!-- Título de la pestaña -->
+
+    <!-- Fuentes de Google -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Winky+Sans:wght@300..900&display=swap" rel="stylesheet">
+
+    <!-- Iconos de Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- Hoja de estilos local -->
+
+    <link href="https://fonts.googleapis.com/css2?family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <link rel="stylesheet" href="./css/styles.css">
 </head>
+
 <body>
+    <!-- Barra lateral de navegación -->
     <aside>
         <ul class="lista-aside">
-            <img src="./assets/pngtree-store-icon-logo-vector-illustration-commercial-market-cafe-vector-picture-image_10583410.png">
+            <img
+                src="./assets/pngtree-store-icon-logo-vector-illustration-commercial-market-cafe-vector-picture-image_10583410.png">
             <li>
-                <button class="btn-aside" id="Dashboard"><i class="fa fa-home" aria-hidden="true"></i> Dashboard</button>
+                <button class="btn-aside" id="Dashboard"><i class="fa fa-home" aria-hidden="true"></i>
+                    Dashboard</button>
             </li>
             <li>
-                <button class="btn-aside" id="Inventory"><i class="fa fa-archive" aria-hidden="true"></i> Inventory</button>
+                <button class="btn-aside" id="Inventory"><i class="fa fa-archive" aria-hidden="true"></i>
+                    Inventory</button>
             </li>
             <li>
-                <button class="btn-aside" id="Reports"><i class="fa fa-bar-chart" aria-hidden="true"></i> Reports</button>
+                <button class="btn-aside" id="Reports"><i class="fa fa-bar-chart" aria-hidden="true"></i>
+                    Reports</button>
             </li>
             <li>
-                <button class="btn-aside" id="Suppliers"><i class="fa fa-user-circle" aria-hidden="true"></i> Suppliers</button>
+                <button class="btn-aside" id="Suppliers"><i class="fa fa-user-circle" aria-hidden="true"></i>
+                    Suppliers</button>
             </li>
             <li>
                 <button class="btn-aside" id="Orders"><i class="fa fa-phone" aria-hidden="true"></i> Orders</button>
             </li>
             <li>
-                <button class="btn-aside" id="Manage Store"><i class="fa fa-clipboard" aria-hidden="true"></i> Manage Store</button>
+                <button class="btn-aside" id="Manage Store"><i class="fa fa-clipboard" aria-hidden="true"></i> Manage
+                    Store</button>
             </li>
 
             <div class="footer">
-            <li>
-                <button class="btn-aside" id="Settings"><i class="fa fa-cog" aria-hidden="true"></i> Settings</button>
-            </li>
-            <li>
-                <button class="btn-aside" id="Log Out"><i class="fa fa-sign-in" aria-hidden="true"></i> Log Out</button>
-            </li>
+                <li>
+                    <button class="btn-aside" id="Settings"><i class="fa fa-cog" aria-hidden="true"></i>
+                        Settings</button>
+                </li>
+                <li>
+                    <button class="btn-aside" id="Log Out"><i class="fa fa-sign-in" aria-hidden="true"></i> Log
+                        Out</button>
+                </li>
             </div>
         </ul>
     </aside>
 
 
     <main>
+        <!-- Barra superior con buscador -->
         <header class="navBar">
             <div class="search-container">
-                    <input type="text" name="query" placeholder="Search product, supplier, order">
+                <input type="text" id="search-input" placeholder="Buscar...">
+                <button id="btn-add-product" class="btn-primary"><i class="fas fa-plus"></i> Add Product</button>
             </div>
         </header>
 
-    <div class="card">
-        <div class="main-container">
-            <h1>Overall Inventory</h1>
-        </div>
-    </div>
+        <div class="card">
+            <div class="main-container">
+                <h1>Overall Inventory</h1>
 
-    <div class="card">
-        <div class="secondary-container">
-            <h1>Products</h1>
+                <!-- Tarjetas de métricas -->
+                <div class="metrics">
+                    <div class="metric-card">
+                        <span>Total Products</span>
+                        <h3 id="total-products">0</h3> <!-- Se actualizará con JS -->
+                    </div>
+                </div>
+
+                <!-- Tabla de productos -->
+                <table id="products-table">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <!-- ... otras columnas ... -->
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody> <!-- Se llenará dinámicamente -->
+                </table>
+            </div>
         </div>
-    </div>
+
+        <div class="card">
+            <div class="secondary-container">
+                <h1>Products</h1>
+            </div>
+        </div>
 
     </main>
+
+    <!-- Modal para agregar/editar productos -->
+    <div id="product-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span> <!-- Botón de cerrar -->
+            <h2 id="modal-title">Add Product</h2> <!-- Título dinámico -->
+
+            <!-- Formulario -->
+            <form id="product-form">
+                <div class="form-group">
+                    <label>Product Name</label>
+                    <input type="text" id="product-name" required>
+                </div>
+                <!-- ... otros campos del formulario ... -->
+                <button type="submit" class="btn-primary">Save</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
+
+    <!-- Configuración de Firebase -->
+    <script>
+        // Configuración obtenida de Firebase Console
+        const firebaseConfig = {
+            apiKey: "AIzaSyChZDqv4KUL2BVeRrTD6wwCR5mZtU8pZ0k",
+            authDomain: "almacen-b6014.firebaseapp.com",
+            projectId: "almacen-b6014",
+            storageBucket: "almacen-b6014.firebasestorage.app",
+            messagingSenderId: "927132981616",
+            appId: "1:927132981616:web:9d4247deb768e2aba597b5"
+        };
+
+        // Inicializar Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        // Hacer la variable db accesible globalmente
+        window.db = firebase.firestore();
+    </script>
+
+    <!-- Lógica de la aplicación -->
     <script src="./js/app.js"></script>
 </body>
 
