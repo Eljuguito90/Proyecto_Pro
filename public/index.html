@@ -1,82 +1,257 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es-MX">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proyecto Pro</title>
+    <title>Proyecto Inventario</title>
+
+    <!-- Fuentes de Google -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Winky+Sans:wght@300..900&display=swap" rel="stylesheet">
+
+    <!-- Iconos de Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
     <link rel="stylesheet" href="./css/styles.css">
 </head>
+
 <body>
+    <!-- Barra lateral de navegación -->
     <aside>
         <ul class="lista-aside">
-            <img src="./assets/pngtree-store-icon-logo-vector-illustration-commercial-market-cafe-vector-picture-image_10583410.png">
+            <img src="./assets/pngtree-store-icon-logo-vector-illustration-commercial-market-cafe-vector-picture-image_10583410.png"
+                alt="Logo">
             <li>
-                <button class="btn-aside" id="Dashboard"><i class="fa fa-home" aria-hidden="true"></i> Dashboard</button>
+                <button class="btn-aside" id="Dashboard"><i class="fa fa-home"></i> Dashboard</button>
             </li>
             <li>
-                <button class="btn-aside" id="Inventory"><i class="fa fa-archive" aria-hidden="true"></i> Inventory</button>
+                <button class="btn-aside active" id="Inventory"><i class="fa fa-archive"></i> Inventory</button>
             </li>
             <li>
-                <button class="btn-aside" id="Reports"><i class="fa fa-bar-chart" aria-hidden="true"></i> Reports</button>
+                <button class="btn-aside" id="Reports"><i class="fa fa-bar-chart"></i> Reports</button>
             </li>
             <li>
-                <button class="btn-aside" id="Suppliers"><i class="fa fa-user-circle" aria-hidden="true"></i> Suppliers</button>
+                <button class="btn-aside" id="Suppliers"><i class="fa fa-user-circle"></i> Suppliers</button>
             </li>
             <li>
-                <button class="btn-aside" id="Orders"><i class="fa fa-phone" aria-hidden="true"></i> Orders</button>
+                <button class="btn-aside" id="Orders"><i class="fa fa-phone"></i> Orders</button>
             </li>
             <li>
-                <button class="btn-aside" id="Manage Store"><i class="fa fa-clipboard" aria-hidden="true"></i> Manage Store</button>
+                <button class="btn-aside" id="Manage Store"><i class="fa fa-clipboard"></i> Manage Store</button>
             </li>
 
             <div class="footer">
-            <li>
-                <button class="btn-aside" id="Settings"><i class="fa fa-cog" aria-hidden="true"></i> Settings</button>
-            </li>
-            <li>
-                <button class="btn-aside" id="Log Out"><i class="fa fa-sign-in" aria-hidden="true"></i> Log Out</button>
-            </li>
+                <li>
+                    <button class="btn-aside" id="Settings"><i class="fa fa-cog"></i> Settings</button>
+                </li>
+                <li>
+                    <button class="btn-aside" id="Log Out"><i class="fa fa-sign-in"></i> Log Out</button>
+                </li>
             </div>
         </ul>
     </aside>
 
-
     <main>
+        <!-- Barra superior con buscador -->
         <header class="navBar">
-            <div class="users">
-                <div class="search-container">
-                    <input type="text" name="query" placeholder="Search product, supplier, order">
-                </div>
-
-                <div class="notifications">
-                <i class="fa fa-bell" aria-hidden="true"></i>
-                <img src="./assets/Usuario.jpg">
-                </div>
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Search product, supplier, order">
+                <button id="btn-add-product" class="btn-primary"><i class="fas fa-plus"></i> Add Product</button>
             </div>
         </header>
 
-    <div class="card">
-        <div class="main-container">
-            <h1>Overall Inventory</h1>
-                <div class="metric-item">
-                <div class="metric-label">Categories</div>
+        <!-- Tarjetas de métricas -->
+        <div class="metrics">
+            <div class="metric-card">
+                <span>Categories</span>
+                <h3 id="categories-count">0</h3>
+                <small>Last 7 days</small>
+            </div>
+            <div class="metric-card">
+                <span>Total Products</span>
+                <h3 id="total-products">0</h3>
+                <small>Last 7 days</small>
+            </div>
+            <div class="metric-card">
+                <span>Revenue</span>
+                <h3>¥25000</h3>
+                <small>Last 7 days</small>
+            </div>
+            <div class="metric-card">
+                <span>Top Selling</span>
+                <h3>5</h3>
+                <small>Last 7 days</small>
+            </div>
+        </div>
+
+        <!-- Tabla de productos -->
+        <div class="card">
+            <div class="main-container">
+                <h1>Products</h1>
+
+                <table id="products-table">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Buying Price</th>
+                            <th>Quantity</th>
+                            <th>Threshold Value</th>
+                            <th>Expiry Date</th>
+                            <th>Availability</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+
+                <div class="pagination">
+                    <button id="prev-page" class="btn-secondary">Previous</button>
+                    <span id="page-info">Page 1 of 1</span>
+                    <button id="next-page" class="btn-secondary">Next</button>
                 </div>
-                <div class="metric-item">
-                    <div class="metric-label">Total Products</div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal para agregar/editar productos -->
+    <div id="product-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 id="modal-title">Add Product</h2>
+
+            <form id="product-form">
+                <div class="image-upload">
+                    <label>Product Image</label>
+                    <div class="drop-area" id="drop-area">
+                        <p>Drop image here or click to browse</p>
+                        <input type="file" id="file-input" accept="image/*" hidden>
+                        <input type="text" id="image-url" placeholder="Or enter image URL">
                     </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Product Name</label>
+                    <input type="text" id="product-name" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Product ID</label>
+                    <input type="text" id="product-id" placeholder="Leave empty for auto ID">
+                </div>
+
+                <div class="form-group">
+                    <label>Category</label>
+                    <select id="product-category" required>
+                        <option value="">Select category</option>
+                        <option value="Beverages">Beverages</option>
+                        <option value="Food">Food</option>
+                        <option value="Cleaning">Cleaning</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Buying Price</label>
+                    <input type="number" id="product-price" step="0.01" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Quantity</label>
+                    <input type="number" id="product-quantity" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Unit</label>
+                    <input type="text" id="product-unit" placeholder="e.g., Packets, Bottles" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Threshold Value</label>
+                    <input type="number" id="product-threshold" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Expiry Date</label>
+                    <input type="date" id="product-expiry" required>
+                </div>
+
+                <div class="form-buttons">
+                    <button type="button" class="btn-secondary" id="discard-btn">Discard</button>
+                    <button type="submit" class="btn-primary">Save</button>
+                </div>
+            </form>
         </div>
     </div>
 
-    <div class="card-product">
-    
+    <!-- Modal para detalles del producto -->
+    <div id="detail-modal" class="modal hidden">
+        <div class="modal-content detail-content">
+            <span class="close-detail-modal">&times;</span>
+            <h2 id="detail-title">Product Details</h2>
+
+            <div class="detail-container">
+                <div class="detail-section">
+                    <h3>Primary Details</h3>
+                    <p><strong>Product name:</strong> <span id="detail-name"></span></p>
+                    <p><strong>Product ID:</strong> <span id="detail-id"></span></p>
+                    <p><strong>Product category:</strong> <span id="detail-category"></span></p>
+                    <p><strong>Expiry Date:</strong> <span id="detail-expiry"></span></p>
+                    <p><strong>Threshold Value:</strong> <span id="detail-threshold"></span></p>
+                </div>
+
+                <div class="detail-section">
+                    <h3>Stock Information</h3>
+                    <p><strong>Opening Stock:</strong> <span id="detail-opening"></span></p>
+                    <p><strong>Remaining Stock:</strong> <span id="detail-remaining"></span></p>
+                    <p><strong>On the way:</strong> <span id="detail-onway"></span></p>
+                </div>
+            </div>
+
+            <div class="detail-buttons">
+                <button class="btn-primary" id="edit-from-detail">Edit</button>
+                <button class="btn-secondary" id="close-detail">Close</button>
+            </div>
+        </div>
     </div>
 
-    </main>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
+
+    <!-- Configuración de Firebase -->
+    <script>
+        // Configuración obtenida de Firebase Console
+        const firebaseConfig = {
+            apiKey: "AIzaSyChZDqv4KUL2BVeRrTD6wwCR5mZtU8pZ0k",
+            authDomain: "almacen-b6014.firebaseapp.com",
+            projectId: "almacen-b6014",
+            storageBucket: "almacen-b6014.appspot.com",
+            messagingSenderId: "927132981616",
+            appId: "1:927132981616:web:9d4247deb768e2aba597b5"
+        };
+
+        // Inicializar Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        // Hacer las variables accesibles globalmente
+        window.db = firebase.firestore();
+        window.storage = firebase.storage();
+
+        // Configurar persistencia de datos
+        db.enablePersistence()
+            .catch((err) => {
+                if (err.code == 'failed-precondition') {
+                    console.warn("Offline persistence can only be enabled in one tab at a time.");
+                } else if (err.code == 'unimplemented') {
+                    console.warn("The current browser does not support offline persistence.");
+                }
+                console.error("Error enabling persistence:", err);
+            });
+    </script>
+
+    <!-- Lógica de la aplicación -->
     <script src="./js/app.js"></script>
 </body>
 
