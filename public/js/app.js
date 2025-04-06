@@ -278,7 +278,7 @@ async function saveProduct() {
         category: document.getElementById('product-category').value || "Uncategorized",
         price: parseFloat(document.getElementById('product-price').value) || 0,
         quantity: parseInt(document.getElementById('product-quantity').value) || 0,
-        unit: document.getElementById('product-unit').value || "units",
+        unit: document.getElementById('product-unit').value || "",
         thresholdValue: parseInt(document.getElementById('product-threshold').value) || 0,
         expiryDate: document.getElementById('product-expiry').value || null,
         imageUrl: document.getElementById('image-url').value || null,
