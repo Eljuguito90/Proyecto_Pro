@@ -161,7 +161,7 @@ function displayProducts(products) {
 
         row.innerHTML = `
             <td>${product.name || 'N/A'}</td>
-            <td>¥${product.price?.toFixed(2) || '0.00'}</td>
+            <td>$${product.price?.toFixed(2) || '0.00'}</td>
             <td>${product.quantity || 0} ${product.unit || ''}</td>
             <td>${product.thresholdValue || 'N/A'}</td>
             <td>${formatDate(product.expiryDate) || 'N/A'}</td>
