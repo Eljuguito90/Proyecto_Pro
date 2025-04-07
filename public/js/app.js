@@ -18,6 +18,7 @@ const productForm = document.getElementById('product-form');
 const closeModal = document.querySelector('.close-modal');
 const closeDetailModal = document.querySelector('.close-detail-modal');
 const editFromDetailBtn = document.getElementById('edit-from-detail');
+const closeDetailBtn = document.getElementById('close-detail');
 const discardBtn = document.getElementById('discard-btn');
 const dropArea = document.getElementById('drop-area');
 const fileInput = document.getElementById('file-input');
@@ -38,6 +39,7 @@ btnAddProduct.addEventListener('click', () => {
 // Cerrar modales
 closeModal.addEventListener('click', () => productModal.classList.add('hidden'));
 closeDetailModal.addEventListener('click', () => detailModal.classList.add('hidden'));
+closeDetailBtn.addEventListener('click', () => detailModal.classList.add('hidden'));
 discardBtn.addEventListener('click', () => productModal.classList.add('hidden'));
 
 // Editar desde detalles
@@ -140,11 +142,6 @@ function displayProducts(products) {
         const row = document.createElement('tr');
         row.dataset.id = product.id;
 
-        // Hacer la fila clickeable para ver detalles
-        row.addEventListener('dblclick', () => {
-            showProductDetail(product.id, product);
-        });
-
         // Determinar disponibilidad
         let availability;
         let availabilityClass;
@@ -161,7 +158,7 @@ function displayProducts(products) {
 
         row.innerHTML = `
             <td>${product.name || 'N/A'}</td>
-            <td>¥${product.price?.toFixed(2) || '0.00'}</td>
+            <td>$${product.price?.toFixed(2) || '0.00'}</td>
             <td>${product.quantity || 0} ${product.unit || ''}</td>
             <td>${product.thresholdValue || 'N/A'}</td>
             <td>${formatDate(product.expiryDate) || 'N/A'}</td>
@@ -169,6 +166,9 @@ function displayProducts(products) {
             <td>
                 <button class="btn-edit" onclick="openEditModal('${product.id}')">
                     <i class="fas fa-edit"></i> Edit
+                </button>
+                <button class="btn-secondary" onclick="showProductDetail('${product.id}')" style="margin-left: 5px;">
+                    <i class="fas fa-info-circle"></i> Details
                 </button>
             </td>
         `;
@@ -214,7 +214,6 @@ function updateMetrics() {
 
     document.getElementById('total-products').textContent = allProducts.length;
     document.getElementById('categories-count').textContent = categories.size;
-    // Puedes actualizar otras métricas aquí
 }
 
 // Función para abrir modal en modo edición
@@ -249,9 +248,27 @@ function openEditModal(productId) {
 }
 
 // Función para mostrar detalles del producto
-function showProductDetail(productId, productData) {
+function showProductDetail(productId, productData = null) {
     currentDetailProductId = productId;
 
+    // Si no se proporcionan los datos del producto, obtenerlos de Firestore
+    if (!productData) {
+        db.collection("products").doc(productId).get().then((doc) => {
+            if (doc.exists) {
+                displayProductDetails(doc.data());
+            } else {
+                alert("Product not found!");
+            }
+        }).catch(error => {
+            console.error("Error loading product:", error);
+            alert("Error loading product: " + error.message);
+        });
+    } else {
+        displayProductDetails(productData);
+    }
+}
+
+function displayProductDetails(productData) {
     // Llenar el modal de detalles
     document.getElementById('detail-name').textContent = productData.name || 'N/A';
     document.getElementById('detail-id').textContent = productData.id || 'Auto-generated';
@@ -261,6 +278,15 @@ function showProductDetail(productId, productData) {
     document.getElementById('detail-opening').textContent = productData.openingStock || productData.quantity || 'N/A';
     document.getElementById('detail-remaining').textContent = productData.quantity || 'N/A';
     document.getElementById('detail-onway').textContent = productData.onTheWay || '0';
+
+    // Mostrar la imagen si existe
+    const imageElement = document.getElementById('detail-image');
+    if (productData.imageUrl) {
+        imageElement.src = productData.imageUrl;
+        imageElement.style.display = 'block';
+    } else {
+        imageElement.style.display = 'none';
+    }
 
     detailModal.classList.remove('hidden');
 }

@@ -57,7 +57,8 @@
         <!-- Barra superior con buscador -->
         <header class="navBar">
             <div class="search-container">
-                <input type="text" id="search-input" placeholder="Search product, supplier, order">
+                <input type="text" id="search-input" placeholder="Search product, categories">
+                <img src="./assets/Usuario.jpg">
             </div>
         </header>
 
@@ -184,8 +185,8 @@
                 </div>
 
                 <div class="form-buttons">
-                    <button type="button" class="btn-secondary" id="discard-btn">Discard</button>
-                    <button type="submit" class="btn-primary">Add Product</button>
+                    <button type="button" class="btn-secondary" id="discard-btn">Cancel</button>
+                    <button type="submit" class="btn-primary">Save Product</button>
                 </div>
             </form>
         </div>
@@ -200,6 +201,9 @@
             <div class="detail-container">
                 <div class="detail-section">
                     <h3>Primary Details</h3>
+                    <div class="product-image-container">
+                        <img id="detail-image" src="" alt="Product Image" class="product-image">
+                    </div>
                     <p><strong>Product name:</strong> <span id="detail-name"></span></p>
                     <p><strong>Product ID:</strong> <span id="detail-id"></span></p>
                     <p><strong>Product category:</strong> <span id="detail-category"></span></p>

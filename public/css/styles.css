@@ -1,4 +1,3 @@
-/* Variables CSS */
 :root {
     --light: #e5e9f4;
     --medium: #85a1df;
@@ -15,7 +14,6 @@
     --success: #00C851;
 }
 
-/* Reset básico */
 * {
     margin: 0;
     padding: 0;
@@ -30,7 +28,6 @@ body {
     color: var(--letras-select);
 }
 
-/* Barra lateral */
 aside {
     width: 200px;
     height: 100vh;
@@ -85,7 +82,6 @@ main {
     margin-left: 200px;
 }
 
-/* Barra de navegación */
 .navBar {
     background-color: var(--white);
     padding: 15px;
@@ -108,7 +104,13 @@ main {
     font-size: 14px;
 }
 
-/* Tarjetas de métricas */
+main img {
+    justify-content: space-between;
+    width: 50px;
+    height: auto;
+    cursor: pointer;
+}
+
 .metrics {
     display: flex;
     gap: 20px;
@@ -142,7 +144,6 @@ main {
     font-size: 12px;
 }
 
-/* Tabla de productos */
 .card {
     background: var(--white);
     border-radius: 8px;
@@ -179,7 +180,6 @@ tr:hover {
     background-color: var(--gray-light);
 }
 
-/* Estados de disponibilidad */
 .availability {
     padding: 4px 8px;
     border-radius: 4px;
@@ -202,7 +202,6 @@ tr:hover {
     color: var(--error);
 }
 
-/* Botones */
 .btn-primary {
     background-color: var(--medium);
     color: white;
@@ -251,7 +250,6 @@ tr:hover {
     margin-right: 5px;
 }
 
-/* Modales */
 .modal {
     display: none;
     position: fixed;
@@ -295,9 +293,8 @@ tr:hover {
     color: var(--dark);
 }
 
-/* Formulario */
 .form-group {
-    margin-bottom: 20px;
+    margin-bottom: -15px;
 }
 
 .form-group label {
@@ -330,7 +327,6 @@ tr:hover {
     margin-top: 30px;
 }
 
-/* Subida de imágenes */
 .image-upload {
     margin-bottom: 25px;
 }
@@ -362,7 +358,6 @@ tr:hover {
     border-radius: 4px;
 }
 
-/* Detalles del producto */
 .detail-container {
     display: flex;
     gap: 40px;
@@ -389,7 +384,6 @@ tr:hover {
     color: var(--dark);
 }
 
-/* Paginación */
 .pagination {
     display: flex;
     justify-content: center;
@@ -402,14 +396,12 @@ tr:hover {
     color: var(--gray-dark);
 }
 
-/* Mensajes de error */
 .error-message {
     color: var(--error);
     font-size: 14px;
     margin-top: 5px;
 }
 
-/* Nuevos estilos para el formulario */
 .form-row {
     display: flex;
     gap: 20px;
@@ -504,7 +496,6 @@ tr:hover {
     }
 }
 
-/* Asegura que el modal se muestre correctamente */
 .modal {
     display: none;
     position: fixed;
@@ -527,4 +518,66 @@ tr:hover {
     border-radius: 8px;
     width: 60%;
     max-width: 700px;
+}
+
+.btn-primary {
+    background-color: var(--medium);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    margin-right: 10px;
+}
+
+.btn-primary:hover {
+    background-color: var(--dark);
+}
+
+.btn-secondary {
+    background-color: var(--gray-light);
+    color: #333;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-secondary:hover {
+    background-color: var(--gray-medium);
+}
+
+.btn-edit {
+    background-color: var(--medium);
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.btn-edit:hover {
+    background-color: var(--dark);
+}
+
+.btn-edit i {
+    margin-right: 5px;
+}
+
+.product-image-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.product-image {
+    max-width: 100%;
+    max-height: 200px;
+    border-radius: 8px;
+    border: 1px solid var(--gray-medium);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
