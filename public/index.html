@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es-MX">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -24,30 +24,30 @@
             <img src="./assets/pngtree-store-icon-logo-vector-illustration-commercial-market-cafe-vector-picture-image_10583410.png"
                 alt="Logo">
             <li>
-                <button class="btn-aside" id="Dashboard"><i class="fa fa-home"></i> Dashboard</button>
+                <button class="btn-aside" id="Dashboard"><i class="fa fa-home"></i> Menú</button>
             </li>
             <li>
-                <button class="btn-aside active" id="Inventory"><i class="fa fa-archive"></i> Inventory</button>
+                <button class="btn-aside active" id="Inventory"><i class="fa fa-archive"></i> Inventario</button>
             </li>
             <li>
-                <button class="btn-aside" id="Reports"><i class="fa fa-bar-chart"></i> Reports</button>
+                <button class="btn-aside" id="Reports"><i class="fa fa-bar-chart"></i> Reportes</button>
             </li>
             <li>
-                <button class="btn-aside" id="Suppliers"><i class="fa fa-user-circle"></i> Suppliers</button>
+                <button class="btn-aside" id="Suppliers"><i class="fa fa-user-circle"></i> Distribuidores</button>
             </li>
             <li>
-                <button class="btn-aside" id="Orders"><i class="fa fa-phone"></i> Orders</button>
+                <button class="btn-aside" id="Orders"><i class="fa fa-phone"></i> Ordenes</button>
             </li>
             <li>
-                <button class="btn-aside" id="Manage Store"><i class="fa fa-clipboard"></i> Manage Store</button>
+                <button class="btn-aside" id="Manage Store"><i class="fa fa-clipboard"></i> Admin. Tienda</button>
             </li>
 
             <div class="footer">
                 <li>
-                    <button class="btn-aside" id="Settings"><i class="fa fa-cog"></i> Settings</button>
+                    <button class="btn-aside" id="Settings"><i class="fa fa-cog"></i> Configuración</button>
                 </li>
                 <li>
-                    <button class="btn-aside" id="Log Out"><i class="fa fa-sign-in"></i> Log Out</button>
+                    <button class="btn-aside" id="Log Out"><i class="fa fa-sign-in"></i> Cerrar Sesión</button>
                 </li>
             </div>
         </ul>
@@ -57,58 +57,59 @@
         <!-- Barra superior con buscador -->
         <header class="navBar">
             <div class="search-container">
-                <input type="text" id="search-input" placeholder="Search product, supplier, order">
+                <input type="text" id="search-input" placeholder="Buscar productos, categorias">
+                <img src="./assets/Usuario.jpg">
             </div>
         </header>
 
         <!-- Tarjetas de métricas -->
         <div class="metrics">
             <div class="metric-card">
-                <span>Categories</span>
+                <span>Categorías</span>
                 <h3 id="categories-count">0</h3>
-                <small>Last 7 days</small>
+                <small>Últimos 7 dias</small>
             </div>
             <div class="metric-card">
-                <span>Total Products</span>
+                <span>Total de Productos</span>
                 <h3 id="total-products">0</h3>
-                <small>Last 7 days</small>
+                <small>Últimos 7 dias</small>
             </div>
             <div class="metric-card">
-                <span>Revenue</span>
+                <span>Ganancias</span>
                 <h3>$25000</h3>
-                <small>Last 7 days</small>
+                <small>Últimos 7 dias</small>
             </div>
             <div class="metric-card">
-                <span>Top Selling</span>
+                <span>Top Ventas</span>
                 <h3>5</h3>
-                <small>Last 7 days</small>
+                <small>Últimos 7 dias</small>
             </div>
         </div>
 
         <!-- Tabla de productos -->
         <div class="card">
             <div class="main-container">
-                <h1>Products</h1>
-                <button id="btn-add-product" class="btn-primary"> Add Product</button>
+                <h1>Productos</h1>
+                <button id="btn-add-product" class="btn-primary"> Añadir Producto</button>
                 <table id="products-table">
                     <thead>
                         <tr>
-                            <th>Product</th>
-                            <th>Buying Price</th>
-                            <th>Quantity</th>
+                            <th>Producto</th>
+                            <th>Precio de Compra</th>
+                            <th>Cantidad</th>
                             <th>Threshold Value</th>
-                            <th>Expiry Date</th>
-                            <th>Availability</th>
-                            <th>Actions</th>
+                            <th>Fecha de Expiración</th>
+                            <th>Disponibilidad</th>
+                            <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody></tbody>
                 </table>
 
                 <div class="pagination">
-                    <button id="prev-page" class="btn-secondary">Previous</button>
-                    <span id="page-info">Page 1 of 1</span>
-                    <button id="next-page" class="btn-secondary">Next</button>
+                    <button id="prev-page" class="btn-secondary">Previa</button>
+                    <span id="page-info">Página 1 de 1</span>
+                    <button id="next-page" class="btn-secondary">Siguiente</button>
                 </div>
             </div>
         </div>
@@ -118,74 +119,82 @@
     <div id="product-modal" class="modal hidden">
         <div class="modal-content">
             <span class="close-modal">&times;</span>
-            <h2 id="modal-title">New Product</h2>
+            <h2 id="modal-title">Añadir Producto</h2>
 
             <form id="product-form">
                 <div class="image-upload">
-                    <label>Product Image</label>
+                    <label>Imagen del producto</label>
                     <div class="drop-area" id="drop-area">
-                        <p>Drag image here or click to browse</p>
+                        <p>Arrastra la imagen o click para buscar</p>
                         <input type="file" id="file-input" accept="image/*" hidden>
-                        <input type="text" id="image-url" placeholder="Or enter image URL">
+                        <input type="text" id="image-url" placeholder="O ingrese URL de imagen">
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group">
-                        <label>Product Name</label>
-                        <input type="text" id="product-name" placeholder="Enter product name" required>
+                        <label>Nombre del Producto</label>
+                        <input type="text" id="product-name" placeholder="Ingrese nombre del producto" required>
                     </div>
 
                     <div class="form-group">
-                        <label>Product ID</label>
-                        <input type="text" id="product-id" placeholder="Enter product ID">
+                        <label>ID</label>
+                        <input type="text" id="product-id" placeholder="ID del producto">
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group">
-                        <label>Category</label>
+                        <label>Categoria</label>
                         <select id="product-category" required>
-                            <option value="">Select product category</option>
-                            <option value="Beverages">Beverages</option>
-                            <option value="Food">Food</option>
-                            <option value="Cleaning">Cleaning</option>
+                            <option value="">Selecciona la categoría del producto</option>
+                            <option value="Viveres">Viveres</option>
+                            <option value="Comida">Comida</option>
+                            <option value="Limpieza">Limpieza</option>
+                            <option value="Bebidas">Bebidas</option>
+                            <option value="Golosinas">Golosinas</option>
+                            <option value="Frutas">Frutas</option>
+                            <option value="Verdura">Verdura</option>
+                            <option value="Farmacia">Farmacia</option>
+                            <option value="Higiene Personal">Higiene Personal</option>
+                            <option value="Bebidas Alcoholicas">Bebidas Alcoholicas</option>
+                            <option value="Lácteos">Lácteos</option>
                         </select>
                     </div>
 
                     <div class="form-group">
-                        <label>Buying Price</label>
-                        <input type="number" id="product-price" step="0.01" placeholder="Enter buying price" required>
+                        <label>Precio de compra</label>
+                        <input type="number" id="product-price" step="0.01" placeholder="Ingrese precio de compra" required>
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group">
-                        <label>Quantity</label>
-                        <input type="number" id="product-quantity" placeholder="Enter product quantity" required>
+                        <label>Cantidad</label>
+                        <input type="number" id="product-quantity" placehoder="Ingrese la cantidad del producto" required>
                     </div>
 
                     <div class="form-group">
-                        <label>Unit</label>
-                        <input type="text" id="product-unit" placeholder="Enter product unit">
+                        <label>Unidad</label>
+                        <input type="text" id="product-unit" placeholder="Ingrese la unidad del producto">
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group">
-                        <label>Expiry Date</label>
-                        <input type="date" id="product-expiry" placeholder="Enter expiry date" required>
+                        <label>Fecha de expiración</label>
+                        <input type="date" id="product-expiry" placeholder="Ingrese fecha de expiración" required>
                     </div>
 
                     <div class="form-group">
                         <label>Threshold Value</label>
-                        <input type="number" id="product-threshold" placeholder="Enter threshold value" required>
+                        <input type="number" id="product-threshold" placeholder="Ingrese threshold value" required>
                     </div>
                 </div>
 
                 <div class="form-buttons">
-                    <button type="button" class="btn-secondary" id="discard-btn">Cancel</button>
-                    <button type="submit" class="btn-primary">Save Product</button>
+                    <button type="button" class="btn-secondary" id="discard-btn">Cancelar</button>
+                    <button type="submit" class="btn-primary">Guardar Producto</button>
                 </div>
             </form>
         </div>
@@ -195,32 +204,32 @@
     <div id="detail-modal" class="modal hidden">
         <div class="modal-content detail-content">
             <span class="close-detail-modal">&times;</span>
-            <h2 id="detail-title">Product Details</h2>
+            <h2 id="detail-title">Detalles de producto</h2>
 
             <div class="detail-container">
                 <div class="detail-section">
-                    <h3>Primary Details</h3>
+                    <h3>Detalles Primarios</h3>
                     <div class="product-image-container">
                         <img id="detail-image" src="" alt="Product Image" class="product-image">
                     </div>
-                    <p><strong>Product name:</strong> <span id="detail-name"></span></p>
-                    <p><strong>Product ID:</strong> <span id="detail-id"></span></p>
-                    <p><strong>Product category:</strong> <span id="detail-category"></span></p>
-                    <p><strong>Expiry Date:</strong> <span id="detail-expiry"></span></p>
+                    <p><strong>Nombre del producto:</strong> <span id="detail-name"></span></p>
+                    <p><strong>ID del producto:</strong> <span id="detail-id"></span></p>
+                    <p><strong>Categoria del producto:</strong> <span id="detail-category"></span></p>
+                    <p><strong>Fecha de expiración:</strong> <span id="detail-expiry"></span></p>
                     <p><strong>Threshold Value:</strong> <span id="detail-threshold"></span></p>
                 </div>
 
                 <div class="detail-section">
-                    <h3>Stock Information</h3>
-                    <p><strong>Opening Stock:</strong> <span id="detail-opening"></span></p>
-                    <p><strong>Remaining Stock:</strong> <span id="detail-remaining"></span></p>
-                    <p><strong>On the way:</strong> <span id="detail-onway"></span></p>
+                    <h3>Información de Inventario</h3>
+                    <p><strong>Inventario entrante:</strong> <span id="detail-opening"></span></p>
+                    <p><strong>Inventario restante:</strong> <span id="detail-remaining"></span></p>
+                    <p><strong>En camino:</strong> <span id="detail-onway"></span></p>
                 </div>
             </div>
 
             <div class="detail-buttons">
-                <button class="btn-primary" id="edit-from-detail">Edit</button>
-                <button class="btn-secondary" id="close-detail">Close</button>
+                <button class="btn-primary" id="edit-from-detail">Editar</button>
+                <button class="btn-secondary" id="close-detail">Cerrar</button>
             </div>
         </div>
     </div>

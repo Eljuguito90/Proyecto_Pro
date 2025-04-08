@@ -31,7 +31,7 @@ const pageInfo = document.getElementById('page-info');
 // Abrir modal para nuevo producto
 btnAddProduct.addEventListener('click', () => {
     editingProductId = null;
-    document.getElementById('modal-title').textContent = 'Add Product';
+    document.getElementById('modal-title').textContent = 'Añadir Producto';
     productForm.reset();
     productModal.classList.remove('hidden');
 });
@@ -146,13 +146,13 @@ function displayProducts(products) {
         let availability;
         let availabilityClass;
         if (product.quantity <= 0) {
-            availability = 'Out of stock';
+            availability = 'Sin Inventario';
             availabilityClass = 'out-of-stock';
         } else if (product.quantity <= (product.thresholdValue || 0)) {
-            availability = 'Low stock';
+            availability = 'Bajo Inventario';
             availabilityClass = 'low-stock';
         } else {
-            availability = 'In-stock';
+            availability = 'En Inventario';
             availabilityClass = 'in-stock';
         }
 
@@ -165,10 +165,10 @@ function displayProducts(products) {
             <td><span class="availability ${availabilityClass}">${availability}</span></td>
             <td>
                 <button class="btn-edit" onclick="openEditModal('${product.id}')">
-                    <i class="fas fa-edit"></i> Edit
+                    <i class="fas fa-edit"></i> Editar
                 </button>
                 <button class="btn-secondary" onclick="showProductDetail('${product.id}')" style="margin-left: 5px;">
-                    <i class="fas fa-info-circle"></i> Details
+                    <i class="fas fa-info-circle"></i> Detalles
                 </button>
             </td>
         `;
