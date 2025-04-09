@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto Inventario</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Winky+Sans:wght@300..900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body>
+    <!-- Barra lateral de navegación -->
+    <aside>
+        <ul class="lista-aside">
+            <img src="./assets/pngtree-store-icon-logo-vector-illustration-commercial-market-cafe-vector-picture-image_10583410.png"
+                alt="Logo">
+            <li>
+                <button class="btn-aside" id="Dashboard"><i class="fa fa-home"></i> Menú</button>
+            </li>
+            <li>
+                <button class="btn-aside active" id="Inventory"><i class="fa fa-archive"></i> Inventario</button>
+            </li>
+            <li>
+                <button class="btn-aside" id="Reports"><i class="fa fa-bar-chart"></i> Reportes</button>
+            </li>
+            <li>
+                <button class="btn-aside" id="Suppliers"><i class="fa fa-user-circle"></i> Distribuidores</button>
+            </li>
+            <li>
+                <button class="btn-aside" id="Orders"><i class="fa fa-phone"></i> Ordenes</button>
+            </li>
+            <li>
+                <button class="btn-aside" id="Manage Store"><i class="fa fa-clipboard"></i> Admin. Tienda</button>
+            </li>
+
+            <div class="footer">
+                <li>
+                    <button class="btn-aside" id="Settings"><i class="fa fa-cog"></i> Configuración</button>
+                </li>
+                <li>
+                    <button class="btn-aside" id="Log Out"><i class="fa fa-sign-in"></i> Cerrar Sesión</button>
+                </li>
+            </div>
+        </ul>
+    </aside>
+
+    <main>
+        <!-- Barra superior con buscador -->
+        <header class="navBar">
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Buscar productos, categorias">
+                <img src="./assets/Usuario.jpg">
+            </div>
+        </header>
+
+        <div class="metrics">
+            <div class="metric-card">
+                <span>Categorías</span>
+                <h3 id="categories-count">0</h3>
+                <small>Últimos 7 dias</small>
+            </div>
+            <div class="metric-card">
+                <span>Total de Productos</span>
+                <h3 id="total-products">0</h3>
+                <small>Últimos 7 dias</small>
+            </div>
+            <div class="metric-card">
+                <span>Ganancias</span>
+                <h3>$25000</h3>
+                <small>Últimos 7 dias</small>
+            </div>
+            <div class="metric-card">
+                <span>Top Ventas</span>
+                <h3>5</h3>
+                <small>Últimos 7 dias</small>
+            </div>
+        </div>
+
+        <!-- Tabla de productos -->
+        <div class="card">
+            <div class="main-container">
+                <h1>Productos</h1>
+                <button id="btn-add-product" class="btn-primary"> Añadir Producto</button>
+                <table id="products-table">
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Precio de Compra</th>
+                            <th>Cantidad</th>
+                            <th>Threshold Value</th>
+                            <th>Fecha de Expiración</th>
+                            <th>Disponibilidad</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+
+                <div class="pagination">
+                    <button id="prev-page" class="btn-secondary">Previa</button>
+                    <span id="page-info">Página 1 de 1</span>
+                    <button id="next-page" class="btn-secondary">Siguiente</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal para agregar/editar productos -->
+    <div id="product-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 id="modal-title">Añadir Producto</h2>
+
+            <form id="product-form">
+                <div class="image-upload">
+                    <label>Imagen del producto</label>
+                    <div class="drop-area" id="drop-area">
+                        <p>Arrastra la imagen o click para buscar</p>
+                        <input type="file" id="file-input" accept="image/*" hidden>
+                        <input type="text" id="image-url" placeholder="O ingrese URL de imagen">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Nombre del Producto</label>
+                        <input type="text" id="product-name" placeholder="Ingrese nombre del producto" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>ID</label>
+                        <input type="text" id="product-id" placeholder="ID del producto">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Categoria</label>
+                        <select id="product-category" required>
+                            <option value="">Selecciona la categoría del producto</option>
+                            <option value="Viveres">Viveres</option>
+                            <option value="Comida">Comida</option>
+                            <option value="Limpieza">Limpieza</option>
+                            <option value="Bebidas">Bebidas</option>
+                            <option value="Golosinas">Golosinas</option>
+                            <option value="Frutas">Frutas</option>
+                            <option value="Verdura">Verdura</option>
+                            <option value="Farmacia">Farmacia</option>
+                            <option value="Higiene Personal">Higiene Personal</option>
+                            <option value="Bebidas Alcoholicas">Bebidas Alcoholicas</option>
+                            <option value="Lácteos">Lácteos</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Precio de compra</label>
+                        <input type="number" id="product-price" step="0.01" placeholder="Ingrese precio de compra" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Cantidad</label>
+                        <input type="number" id="product-quantity" placehoder="Ingrese la cantidad del producto" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Unidad</label>
+                        <input type="text" id="product-unit" placeholder="Ingrese la unidad del producto">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Fecha de expiración</label>
+                        <input type="date" id="product-expiry" placeholder="Ingrese fecha de expiración" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Threshold Value</label>
+                        <input type="number" id="product-threshold" placeholder="Ingrese threshold value" required>
+                    </div>
+                </div>
+
+                <div class="form-buttons">
+                    <button type="button" class="btn-secondary" id="discard-btn">Cancelar</button>
+                    <button type="submit" class="btn-primary">Guardar Producto</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal para detalles del producto -->
+    <div id="detail-modal" class="modal hidden">
+        <div class="modal-content detail-content">
+            <span class="close-detail-modal">&times;</span>
+            <h2 id="detail-title">Detalles de producto</h2>
+
+            <div class="detail-container">
+                <div class="detail-section">
+                    <h3>Detalles Primarios</h3>
+                    <div class="product-image-container">
+                        <img id="detail-image" src="" alt="Product Image" class="product-image">
+                    </div>
+                    <p><strong>Nombre del producto:</strong> <span id="detail-name"></span></p>
+                    <p><strong>ID del producto:</strong> <span id="detail-id"></span></p>
+                    <p><strong>Categoria del producto:</strong> <span id="detail-category"></span></p>
+                    <p><strong>Fecha de expiración:</strong> <span id="detail-expiry"></span></p>
+                    <p><strong>Threshold Value:</strong> <span id="detail-threshold"></span></p>
+                </div>
+
+                <div class="detail-section">
+                    <h3>Información de Inventario</h3>
+                    <p><strong>Inventario entrante:</strong> <span id="detail-opening"></span></p>
+                    <p><strong>Inventario restante:</strong> <span id="detail-remaining"></span></p>
+                    <p><strong>En camino:</strong> <span id="detail-onway"></span></p>
+                </div>
+            </div>
+
+            <div class="detail-buttons">
+                <button class="btn-primary" id="edit-from-detail">Editar</button>
+                <button class="btn-secondary" id="close-detail">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
+
+    <!-- Configuración de Firebase -->
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyChZDqv4KUL2BVeRrTD6wwCR5mZtU8pZ0k",
+            authDomain: "almacen-b6014.firebaseapp.com",
+            projectId: "almacen-b6014",
+            storageBucket: "almacen-b6014.appspot.com",
+            messagingSenderId: "927132981616",
+            appId: "1:927132981616:web:9d4247deb768e2aba597b5"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+
+        window.db = firebase.firestore();
+        window.storage = firebase.storage();
+
+        db.enablePersistence()
+            .catch((err) => {
+                if (err.code == 'failed-precondition') {
+                    console.warn("Offline persistence can only be enabled in one tab at a time.");
+                } else if (err.code == 'unimplemented') {
+                    console.warn("The current browser does not support offline persistence.");
+                }
+                console.error("Error enabling persistence:", err);
+            });
+    </script>
+    <script src="./js/app.js"></script>
+</body>
+
+</html>
