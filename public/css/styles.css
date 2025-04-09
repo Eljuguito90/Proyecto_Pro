@@ -21,6 +21,7 @@
     font-family: 'Winky Sans', sans-serif;
 }
 
+/* Distribución principal: aside y main */
 body {
     display: flex;
     flex-direction: row;
@@ -28,6 +29,7 @@ body {
     color: var(--letras-select);
 }
 
+/* Aside fijo para navegación lateral */
 aside {
     width: 200px;
     height: 100vh;
@@ -111,6 +113,7 @@ main img {
     cursor: pointer;
 }
 
+/* Tarjetas de métricas */
 .metrics {
     display: flex;
     gap: 20px;
@@ -157,6 +160,7 @@ main img {
     color: var(--dark);
 }
 
+/* Tabla de productos */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -250,6 +254,7 @@ tr:hover {
     margin-right: 5px;
 }
 
+/* Modal para formularios y detalles */
 .modal {
     display: none;
     position: fixed;

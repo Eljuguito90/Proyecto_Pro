@@ -6,12 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Proyecto Inventario</title>
 
-    <!-- Fuentes de Google -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Winky+Sans:wght@300..900&display=swap" rel="stylesheet">
 
-    <!-- Iconos de Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <link rel="stylesheet" href="./css/styles.css">
@@ -62,7 +60,6 @@
             </div>
         </header>
 
-        <!-- Tarjetas de métricas -->
         <div class="metrics">
             <div class="metric-card">
                 <span>Categorías</span>
@@ -234,14 +231,13 @@
         </div>
     </div>
 
-    <!-- Firebase SDK -->
+    <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
 
     <!-- Configuración de Firebase -->
     <script>
-        // Configuración obtenida de Firebase Console
         const firebaseConfig = {
             apiKey: "AIzaSyChZDqv4KUL2BVeRrTD6wwCR5mZtU8pZ0k",
             authDomain: "almacen-b6014.firebaseapp.com",
@@ -251,14 +247,11 @@
             appId: "1:927132981616:web:9d4247deb768e2aba597b5"
         };
 
-        // Inicializar Firebase
         firebase.initializeApp(firebaseConfig);
 
-        // Hacer las variables accesibles globalmente
         window.db = firebase.firestore();
         window.storage = firebase.storage();
 
-        // Configurar persistencia de datos
         db.enablePersistence()
             .catch((err) => {
                 if (err.code == 'failed-precondition') {
@@ -269,8 +262,6 @@
                 console.error("Error enabling persistence:", err);
             });
     </script>
-
-    <!-- Lógica de la aplicación -->
     <script src="./js/app.js"></script>
 </body>
 

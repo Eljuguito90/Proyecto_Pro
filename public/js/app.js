@@ -1,7 +1,5 @@
-// ========== CONFIGURACIÓN INICIAL ========== //
 console.log("Initializing application...");
 
-// Variables globales
 let editingProductId = null;
 let currentDetailProductId = null;
 let currentPage = 1;
@@ -9,7 +7,6 @@ const productsPerPage = 10;
 let allProducts = [];
 let unsubscribe = null;
 
-// Referencias a elementos del DOM
 const searchInput = document.getElementById('search-input');
 const btnAddProduct = document.getElementById('btn-add-product');
 const productModal = document.getElementById('product-modal');
@@ -27,8 +24,6 @@ const prevPageBtn = document.getElementById('prev-page');
 const nextPageBtn = document.getElementById('next-page');
 const pageInfo = document.getElementById('page-info');
 
-// ========== EVENT LISTENERS ========== //
-// Abrir modal para nuevo producto
 btnAddProduct.addEventListener('click', () => {
     editingProductId = null;
     document.getElementById('modal-title').textContent = 'Añadir Producto';
@@ -36,31 +31,26 @@ btnAddProduct.addEventListener('click', () => {
     productModal.classList.remove('hidden');
 });
 
-// Cerrar modales
 closeModal.addEventListener('click', () => productModal.classList.add('hidden'));
 closeDetailModal.addEventListener('click', () => detailModal.classList.add('hidden'));
 closeDetailBtn.addEventListener('click', () => detailModal.classList.add('hidden'));
 discardBtn.addEventListener('click', () => productModal.classList.add('hidden'));
 
-// Editar desde detalles
 editFromDetailBtn.addEventListener('click', () => {
     detailModal.classList.add('hidden');
     openEditModal(currentDetailProductId);
 });
 
-// Envío de formulario
 productForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     await saveProduct();
 });
 
-// Búsqueda en tiempo real
 searchInput.addEventListener('input', () => {
     currentPage = 1;
     filterProducts(searchInput.value.toLowerCase());
 });
 
-// Paginación
 prevPageBtn.addEventListener('click', () => {
     if (currentPage > 1) {
         currentPage--;
@@ -76,7 +66,6 @@ nextPageBtn.addEventListener('click', () => {
     }
 });
 
-// Drag and drop para imágenes
 ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
     dropArea.addEventListener(eventName, preventDefaults, false);
 });
@@ -93,7 +82,7 @@ dropArea.addEventListener('drop', handleDrop, false);
 dropArea.addEventListener('click', () => fileInput.click());
 fileInput.addEventListener('change', handleFiles);
 
-// ========== FUNCIONES PRINCIPALES ========== //
+
 // Inicializar la aplicación
 async function initApp() {
     console.log("Initializing Firebase connection...");
@@ -228,7 +217,6 @@ function openEditModal(productId) {
 
         const product = doc.data();
 
-        // Llenar formulario con datos existentes
         document.getElementById('product-name').value = product.name || '';
         document.getElementById('product-id').value = product.id || '';
         document.getElementById('product-category').value = product.category || '';
@@ -251,7 +239,6 @@ function openEditModal(productId) {
 function showProductDetail(productId, productData = null) {
     currentDetailProductId = productId;
 
-    // Si no se proporcionan los datos del producto, obtenerlos de Firestore
     if (!productData) {
         db.collection("products").doc(productId).get().then((doc) => {
             if (doc.exists) {
@@ -279,7 +266,6 @@ function displayProductDetails(productData) {
     document.getElementById('detail-remaining').textContent = productData.quantity || 'N/A';
     document.getElementById('detail-onway').textContent = productData.onTheWay || '0';
 
-    // Mostrar la imagen si existe
     const imageElement = document.getElementById('detail-image');
     if (productData.imageUrl) {
         imageElement.src = productData.imageUrl;
@@ -291,7 +277,7 @@ function displayProductDetails(productData) {
     detailModal.classList.remove('hidden');
 }
 
-// Función para guardar producto
+// Función para guardar producto en Firestore
 async function saveProduct() {
     const productName = document.getElementById('product-name').value.trim();
     if (!productName) {
@@ -313,11 +299,9 @@ async function saveProduct() {
 
     try {
         if (editingProductId) {
-            // Actualizar producto existente
             await db.collection("products").doc(editingProductId).update(productData);
             console.log("Product updated successfully");
         } else {
-            // Crear nuevo producto
             await db.collection("products").add(productData);
             console.log("Product added successfully");
         }
@@ -338,16 +322,14 @@ function updatePagination() {
     nextPageBtn.disabled = currentPage >= totalPages;
 }
 
-// ========== FUNCIONES AUXILIARES ========== //
+// Convierte una fecha a formato legible
 function formatDate(dateString) {
     if (!dateString) return '';
 
-    // Si es un objeto Timestamp de Firebase
     if (dateString.toDate) {
         return dateString.toDate().toLocaleDateString('es-MX');
     }
 
-    // Si es una cadena de fecha ISO
     const date = new Date(dateString);
     if (!isNaN(date.getTime())) {
         return date.toLocaleDateString('es-MX', {
@@ -356,12 +338,10 @@ function formatDate(dateString) {
             year: 'numeric'
         });
     }
-
-    // Si ya está en formato legible
     return dateString;
 }
 
-// Funciones para drag and drop de imágenes
+// Funciones para drag and drop de imágenes a Firebase
 function preventDefaults(e) {
     e.preventDefault();
     e.stopPropagation();
@@ -385,13 +365,11 @@ function handleFiles(files) {
     if (files.length > 0) {
         const file = files[0];
         if (file.type.startsWith('image/')) {
-            // Subir imagen a Firebase Storage
             const storageRef = storage.ref(`product_images/${file.name}`);
             const uploadTask = storageRef.put(file);
 
             uploadTask.on('state_changed',
                 (snapshot) => {
-                    // Progreso de la subida
                     const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
                     console.log('Upload is ' + progress + '% done');
                 },
@@ -412,13 +390,11 @@ function handleFiles(files) {
     }
 }
 
-// ========== INICIALIZACIÓN ========== //
 // Iniciar la aplicación cuando el DOM esté listo
 document.addEventListener('DOMContentLoaded', () => {
     console.log("DOM fully loaded");
     initApp();
 });
 
-// Hacer funciones accesibles globalmente
 window.openEditModal = openEditModal;
 window.showProductDetail = showProductDetail;
